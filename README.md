@@ -55,7 +55,7 @@ sudo apt-get install git
 Clone the project's files wherever you want, I put mine in my home folder (`~`).
 
 ```
-git clone https://github.com/Noxalus/Multi-Streaming-Server.git
+git clone https://github.com/HeyItGuyFixIt/Multi-Streaming-Server.git
 cd Multi-Streaming-Server
 ```
 
@@ -97,9 +97,9 @@ Open your favorite live stream software and use the following RTMP URL: `rtmp://
 
 Some streamers display chat messages in the overlay on top of stream video. Unfortunatly, as you broadcast to multiple services, the chat messages scattered on these different services.
 
-To solve this problem, I made another project called [Live Stream Chat Retriever](https://github.com/Noxalus/Live-Stream-Chat-Retriever) that will allow you to retrieve all services' messages to display them in a single HTML page in real time.
+To solve this problem, Noxalus made another project called [Live Stream Chat Retriever](https://github.com/Noxalus/Live-Stream-Chat-Retriever) that will allow you to retrieve all services' messages to display them in a single HTML page in real time.
 
-Please note that this project has a [`chat`](https://github.com/Noxalus/Multi-Streaming-Server/tree/chat) branch that update the `bootstrap.sh` script to integrate the chat during the installation.
+Please note that this project has a [`chat`](https://github.com/HeyItGuyFixIt/Multi-Streaming-Server/tree/chat) branch that update the `bootstrap.sh` script to integrate the chat during the installation.
 
 # How to handle new services
 
@@ -109,13 +109,13 @@ Of course, it's possible, all you need to retrieve is the RTMP URL of the servic
 
 For Facebook Live, here is what it looks like:
 
-![](https://raw.githubusercontent.com/Noxalus/Multi-Streaming-Server/master/doc/facebook-rtmp-stream-key.jpg)
+![](https://raw.githubusercontent.com/HeyItGuyFixIt/Multi-Streaming-Server/master/doc/facebook-rtmp-stream-key.jpg)
 
 (Please make sure to pick the checkbox to make the stream key persistent otherwise you will need to change the Nginx configuration each time you make a new live stream...)
 
 Now, look at the file called `nginx/conf/nginx.template.conf`, specifically to the `rtmp` block:
 
-![](https://raw.githubusercontent.com/Noxalus/Multi-Streaming-Server/master/doc/nginx-conf-file.jpg)
+![](https://raw.githubusercontent.com/HeyItGuyFixIt/Multi-Streaming-Server/master/doc/nginx-conf-file.jpg)
 
 This file has a really simple structure easily understandable thanks to the image above. The red block corresponds to the `live` application, the one on which you will send your video stream with the following URL `rtmp://yourdomain:1935/live`. It's into this application that you will transmit the video stream to all services you want. These services are described by the blue blocks that simply push the stream to the RTMP URL corresponding to each service.
 
