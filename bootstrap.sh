@@ -3,8 +3,8 @@
 SCRIPT_LOCATION=$(readlink -f "$0")
 SCRIPT_PATH=$(dirname ${SCRIPT_LOCATION})
 PROJECT_PATH="${PROJECT_PATH:-$SCRIPT_PATH}"
-NGINX_VERSION=1.9.5
-NGINX_RTMP_MODULE_VERSION=1.2.1
+NGINX_VERSION=1.17.9
+NGINX_RTMP_MODULE_VERSION=1.2.7
 NGINX_PATH=/usr/sbin/nginx                              # Make sure to change the init file too
 NGINX_CONFIG_WATCHER_PATH=/usr/local/nginx/conf-watcher # Make sure to change the init file too
 
@@ -19,7 +19,7 @@ if [ ! -e $NGINX_PATH ]; then
     echo "Nginx server doesn't exist yet."
 
     # Add an APT repository to install FFMpeg (used to encode video stream)
-    add-apt-repository ppa:mc3man/trusty-media
+    add-apt-repository ppa:mc3man/bionic-media
     
     # Make sure the new APT repository is taken into account
     apt-get update
@@ -34,13 +34,13 @@ if [ ! -e $NGINX_PATH ]; then
     tar -zxvf nginx-${NGINX_VERSION}.tar.gz
     
     # Download Nginx's RTMP module used for live broadcasting
-    wget https://github.com/arut/nginx-rtmp-module/archive/v${NGINX_RTMP_MODULE_VERSION}.zip
+    wget https://github.com/winshining/nginx-http-flv-module/archive/v${NGINX_RTMP_MODULE_VERSION}.zip
     # Unzip the zip file
     unzip v${NGINX_RTMP_MODULE_VERSION}.zip
     
     # Build Nginx with the RTMP module included
     cd nginx-${NGINX_VERSION}
-    ./configure --with-http_ssl_module --add-module=../nginx-rtmp-module-${NGINX_RTMP_MODULE_VERSION}
+    ./configure --with-http_ssl_module --add-module=../nginx-http-flv-module-${NGINX_RTMP_MODULE_VERSION}
     make
     make install
     cd ..
@@ -58,6 +58,10 @@ if [ ! -e $NGINX_PATH ]; then
     rm -rf /usr/local/nginx/html
     ln -fs ${PROJECT_PATH}/nginx/html /usr/local/nginx/
     ln -fs ${PROJECT_PATH}/nginx/conf/nginx.conf /usr/local/nginx/conf
+    ln -fs ${PROJECT_PATH}/nginx/conf/mime.types /usr/local/nginx/conf
+
+    # Create missing directory
+    mkdir /usr/local/nginx/logs
 
     # Make sure Nginx HTML files will be readable online
     chmod 755 ${PROJECT_PATH}/nginx/html/*
@@ -87,7 +91,7 @@ if [ ! -e $NGINX_CONFIG_WATCHER_PATH ]; then
 
     # Install Node JS and NPM
     curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-	apt-get install -y nodejs nodejs-legacy npm
+	apt-get install -y nodejs nodejs-legacy
 	
     # Install forever
     npm install forever -g
