@@ -31,9 +31,9 @@ To check that the stream is properly received and sent to each services, you can
 
 ## FAQ
 
-- [How to install on a dedicated server](./#user-content-how-to-install-on-a-dedicated-server)
-- [How to display all services' chat messages in the same place](./#user-content-how-to-display-all-services-chat-messages-in-the-same-place)
-- [How to handle new services](./#user-content-how-to-handle-new-services)
+- [How to install on a dedicated server](#user-content-how-to-install-on-a-dedicated-server)
+- [How to display all services' chat messages in the same place](#user-content-how-to-display-all-services-chat-messages-in-the-same-place)
+- [How to handle new services](#user-content-how-to-handle-new-services)
 
 # How to install on a dedicated server
 
