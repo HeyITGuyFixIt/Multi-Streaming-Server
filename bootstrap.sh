@@ -19,13 +19,13 @@ if [ ! -e $NGINX_PATH ]; then
     echo "Nginx server doesn't exist yet."
 
     # Add an APT repository to install FFMpeg (used to encode video stream)
-    add-apt-repository ppa:mc3man/bionic-media
+    add-apt-repository ppa:mc3man/$(cat /etc/lsb-release | grep -oPe "(?<=DISTRIB_CODENAME=)(.*)")-media
     
     # Make sure the new APT repository is taken into account
     apt-get update
     
     # Install requirements
-    apt-get install -y build-essential libpcre3 libpcre3-dev openssl libssl-dev unzip libaio1 ffmpeg
+    apt-get install -y build-essential libpcre3 libpcre3-dev openssl libssl-dev unzip libaio1 ffmpeg zlib1g-dev
     
     # Download Nginx server
     wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
