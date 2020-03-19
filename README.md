@@ -75,7 +75,7 @@ And change all variables between curly braces ``{{ }}`` like:
 
 ## Execute `bootstrap.sh` script
 
-`chmod +x bootstrap.sh && ./bootstrap.sh`
+`chmod +x bootstrap.sh && sudo ./bootstrap.sh`
 
 Press `ENTER` when asked by the script until the installation is complete.
 
