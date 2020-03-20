@@ -58,7 +58,7 @@ jobs:
         name: stunnel-log-${{ matrix.os }}
         path: /var/log/stunnel4/stunnel.log
     - name: Check for issues
-      continue-on-error: true
+      continue-on-error: false
       run: |
         if [ ! -e /usr/local/nginx/conf/nginx.conf ]; then
           echo nginx.conf does not exist
@@ -74,3 +74,7 @@ jobs:
           echo An error log was generated
           exit 1
         fi
+    - name: Check for Nginx error log
+      uses: lots0logs/gh-action-conditional-failure@1.0.0
+      if: --file-exists -- /usr/local/nginx/logs/error.log
+        
