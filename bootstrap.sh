@@ -39,7 +39,7 @@ if [ ! -e $NGINX_PATH ]; then
     wget http://www.haproxy.org/download/${HAPROXY_MAIN_VERSION}/src/haproxy-${HAPROXY_VERSION}.tar.gz
     tar zxvf haproxy-${HAPROXY_VERSION}.tar.gz
     cd haproxy-${HAPROXY_VERSION}
-    make USE_PCRE=1 USE_OPENSSL=1 USE_ZLIB=1 USE_CRYPT_H=1 USE_LIBCRYPT=1
+    make USE_PCRE=1 USE_OPENSSL=1 USE_ZLIB=1 USE_CRYPT_H=1 USE_LIBCRYPT=1 TARGET=linux-glibc
     make install
     cd ..
     
