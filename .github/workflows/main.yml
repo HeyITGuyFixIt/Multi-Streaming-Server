@@ -28,7 +28,9 @@ jobs:
     - name: Prep Environment
       run: |
         curl https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
-        sudo apt-get update
+        sudo apt update
+        sudo apt upgrade -y
+        sudo apt autoremove -y
     - name: Build Multi-Streaming-Server
       run: |
         mv nginx/conf/nginx.template.conf nginx/conf/nginx.conf
