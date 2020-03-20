@@ -1,0 +1,36 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request 
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # Runs a set of commands using the runners shell
+    - name: Build Multi-Streaming-Server
+      run: |
+        mv nginx/conf/nginx.template.conf nginx/conf/nginx.conf
+        sed -i -e 's/{{ my_ip_address }}/127.0.0.1/g' nginx/conf/nginx.conf
+        sed -i -e 's/{{ youtube_key }}/XXXX-XXXX-XXXX-XXXX/g' nginx/conf/nginx.conf
+        sed -i -e 's/{{ facebook_key }}/XXXXXXXXXXXXXXX?s_bl=1&s_ps=1&s_sw=0&s_vt=api-s&a=XXX-XXXXXXXXXXXX/g' nginx/conf/nginx.conf
+        sed -i -e 's/{{ twitch_key }}/live_00000000_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/g' nginx/conf/nginx.conf
+        sed -i -e 's/{{ dailymotion_key }}/XXXXXXX?auth=XXXX_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/g' nginx/conf/nginx.conf
+        sed -i -e 's/{{ hitbox_key }}/noxalus?key=XXXXXXXX/g' nginx/conf/nginx.conf
+        chmod +x bootstrap.sh
+        sudo ./bootstrap.sh
