@@ -47,11 +47,16 @@ jobs:
       with:
         name: conf-${{ matrix.os }}
         path: /usr/local/nginx/conf
-    - name: Upload logs
+    - name: Upload Nginx log
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: logs-${{ matrix.os }}
+        name: nginx-log-${{ matrix.os }}
         path: /usr/local/nginx/logs
+    - name: Upload Stunnel4 log
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: stunnel-log-${{ matrix.os }}
+        path: /var/log/stunnel4/stunnel.log
     - name: Check for issues
       continue-on-error: true
       run: |
