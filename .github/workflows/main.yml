@@ -37,23 +37,30 @@ jobs:
         sed -i -e 's/{{ hitbox_key }}/noxalus?key=XXXXXXXX/g' nginx/conf/nginx.conf
         chmod +x bootstrap.sh
         sudo ./bootstrap.sh
-    - name: Check for issues
-      run: |
-        if [ ! -e /usr/local/nginx/conf/nginx.conf ]; then
-          echo nginx.conf does not exist
-        else
-          cat nginx/conf/nginx.conf
-        fi
-        if [ ! -e /usr/local/nginx/conf/mime.types ]; then
-          echo mime.types does not exist
-        fi
-    - name: Upload nginx.conf
+    - name: Upload conf
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: nginx.conf
-        path: /usr/local/nginx/conf/nginx.conf
+        name: conf
+        path: /usr/local/nginx/conf
     - name: Upload logs
       uses: actions/upload-artifact@v1.0.0
       with:
         name: logs
         path: /usr/local/nginx/logs
+    - name: Check for issues
+      continue-on-error: true
+      run: |
+        if [ ! -e /usr/local/nginx/conf/nginx.conf ]; then
+          echo nginx.conf does not exist
+          exit 1
+        else
+          cat nginx/conf/nginx.conf
+        fi
+        if [ ! -e /usr/local/nginx/conf/mime.types ]; then
+          echo mime.types does not exist
+          exit 1
+        fi
+        if [ -e /usr/local/nginx/logs/error.log ]; then
+          echo An error log was generated
+          exit 1
+        fi
