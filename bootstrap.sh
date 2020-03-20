@@ -27,7 +27,7 @@ if [ ! -e $NGINX_PATH ]; then
     apt-get update
     
     # Install requirements
-    apt-get install -y build-essential libpcre3 libpcre3-dev openssl libssl-dev unzip libaio1 ffmpeg zlib1g-dev
+    apt-get install -y build-essential libpcre3 libpcre3-dev openssl libssl-dev unzip libaio1 ffmpeg zlib1g-dev stunnel4
     
     # Download Nginx server
     wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
@@ -95,6 +95,9 @@ if [ ! -e $NGINX_PATH ]; then
     chmod +x /usr/local/nginx/script/restart.sh
     
     update-rc.d nginx defaults
+    
+    # Copy stunnel config
+    cp -f ${PROJECT_PATH}/stunnel/stunnel.conf /etc/stunnel
 fi
 
 if [ ! -e $NGINX_CONFIG_WATCHER_PATH ]; then
