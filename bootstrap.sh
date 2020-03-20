@@ -19,7 +19,7 @@ if [ ! -e $NGINX_PATH ]; then
     echo "Nginx server doesn't exist yet."
 
     # Add an APT repository to install FFMpeg (used to encode video stream)
-    add-apt-repository ppa:mc3man/$(cat /etc/lsb-release | grep -oPe "(?<=DISTRIB_CODENAME=)(.*)")-media
+    add-apt-repository -y ppa:mc3man/$(cat /etc/lsb-release | grep -oPe "(?<=DISTRIB_CODENAME=)(.*)")-media
     
     # Make sure the new APT repository is taken into account
     apt-get update
