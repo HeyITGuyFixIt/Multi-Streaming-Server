@@ -7,8 +7,6 @@ NGINX_VERSION=1.17.9
 NGINX_RTMP_MODULE_VERSION=1.2.7
 NGINX_PATH=/usr/sbin/nginx                              # Make sure to change the init file too
 NGINX_CONFIG_WATCHER_PATH=/usr/local/nginx/conf-watcher # Make sure to change the init file too
-HAPROXY_MAIN_VERSION=2.1
-HAPROXY_VERSION=2.1.3
 
 echo "Script location: ${SCRIPT_LOCATION}"
 echo "Project path: ${PROJECT_PATH}"
@@ -34,14 +32,6 @@ if [ ! -e $NGINX_PATH ]; then
     
     # Unzip the downloaded tarball
     tar -zxvf nginx-${NGINX_VERSION}.tar.gz
-    
-    # Download, build and install HAProxy for RTMPS
-    wget http://www.haproxy.org/download/${HAPROXY_MAIN_VERSION}/src/haproxy-${HAPROXY_VERSION}.tar.gz
-    tar zxvf haproxy-${HAPROXY_VERSION}.tar.gz
-    cd haproxy-${HAPROXY_VERSION}
-    make USE_PCRE=1 USE_OPENSSL=1 USE_ZLIB=1 USE_CRYPT_H=1 USE_LIBCRYPT=1 TARGET=linux-glibc
-    make install
-    cd ..
     
     # Download Nginx's RTMP module used for live broadcasting
     wget https://github.com/winshining/nginx-http-flv-module/archive/v${NGINX_RTMP_MODULE_VERSION}.zip
@@ -124,6 +114,6 @@ if [ ! -e $NGINX_CONFIG_WATCHER_PATH ]; then
     
     update-rc.d nginx-conf-watcher defaults
 fi
-
+stunnel
 /etc/init.d/nginx start
 /etc/init.d/nginx-conf-watcher start
