@@ -31,7 +31,7 @@ jobs:
         mv nginx/conf/nginx.template.conf nginx/conf/nginx.conf
         sed -i -e 's/{{ my_ip_address }}/127.0.0.1/g' nginx/conf/nginx.conf
         sed -i -e 's/{{ youtube_key }}/XXXX-XXXX-XXXX-XXXX/g' nginx/conf/nginx.conf
-        sed -i -e 's/{{ facebook_key }}/XXXXXXXXXXXXXXX\?s_bl=1&s_ps=1&s_sw=0&s_vt=api-s&a=XXX-XXXXXXXXXXXX/g' nginx/conf/nginx.conf
+        sed -i -e 's/{{ facebook_key }}/XXXXXXXXXXXXXXX\?s_bl=1\&s_ps=1\&s_sw=0\&s_vt=api-s\&a=XXX-XXXXXXXXXXXX/g' nginx/conf/nginx.conf
         sed -i -e 's/{{ twitch_key }}/live_00000000_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/g' nginx/conf/nginx.conf
         sed -i -e 's/{{ dailymotion_key }}/XXXXXXX?auth=XXXX_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/g' nginx/conf/nginx.conf
         sed -i -e 's/{{ hitbox_key }}/noxalus?key=XXXXXXXX/g' nginx/conf/nginx.conf
