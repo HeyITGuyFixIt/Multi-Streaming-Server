@@ -15,7 +15,10 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, ubuntu-16.04]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -34,3 +37,13 @@ jobs:
         sed -i -e 's/{{ hitbox_key }}/noxalus?key=XXXXXXXX/g' nginx/conf/nginx.conf
         chmod +x bootstrap.sh
         sudo ./bootstrap.sh
+    - name: Check for issues
+      run: |
+        if [ ! -e /usr/local/nginx/conf/nginx.conf ]; then
+          echo nginx.conf does not exist
+        else
+          cat nginx/conf/nginx.conf
+        fi
+        if [ ! -e /usr/local/nginx/conf/mime.types ]; then
+          echo mime.types does not exist
+        fi
