@@ -1,3 +1,4 @@
+![CI](https://github.com/HeyITGuyFixIt/Multi-Streaming-Server/workflows/CI/badge.svg)
 # Multi Streaming Server
 A Nginx server with RTMP module to send video streaming to multiple services.
 
@@ -72,6 +73,7 @@ And change all variables between curly braces ``{{ }}`` like:
 - **{{ twitch_key }}**: your Twitch stream key (mine looks like that: `live_00000000_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`)
 - **{{ dailymotion_key }}**: your Dailymotion stream key (mine looks like that: `XXXXXXX?auth=XXXX_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`)
 - **{{ hitbox_key }}**: your Hitbox stream key (mine looks like that: `noxalus?key=XXXXXXXX`)
+- **{{ facebook_key }}**: your Hitbox stream key (mine looks like that: `XXXXXXXXXXXXXXX?s_bl=1&s_ps=1&s_sw=0&s_vt=api-s&a=XXX-XXXXXXXXXXXX`)
 
 ## Execute `bootstrap.sh` script
 
