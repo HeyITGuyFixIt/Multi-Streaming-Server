@@ -25,7 +25,10 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a set of commands using the runners shell
+    - name: Prep Environment
+      run: |
+        curl https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
+        sudo apt-get update
     - name: Build Multi-Streaming-Server
       run: |
         mv nginx/conf/nginx.template.conf nginx/conf/nginx.conf
