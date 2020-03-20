@@ -47,3 +47,13 @@ jobs:
         if [ ! -e /usr/local/nginx/conf/mime.types ]; then
           echo mime.types does not exist
         fi
+    - name: Upload nginx.conf
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: nginx.conf
+        path: /usr/local/nginx/conf/nginx.conf
+    - name: Upload logs
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: logs
+        path: /usr/local/nginx/logs
