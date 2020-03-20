@@ -101,7 +101,7 @@ if [ ! -e $NGINX_CONFIG_WATCHER_PATH ]; then
     echo "Nginx's configuration watcher doesn't exist yet."
 
     # Install Node JS and NPM
-    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+    curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 	apt-get install -y nodejs nodejs-legacy
 	
     # Install forever
