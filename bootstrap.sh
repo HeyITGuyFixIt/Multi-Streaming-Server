@@ -114,6 +114,6 @@ if [ ! -e $NGINX_CONFIG_WATCHER_PATH ]; then
     
     update-rc.d nginx-conf-watcher defaults
 fi
-stunnel
+stunnel | systemd-cat
 /etc/init.d/nginx start
 /etc/init.d/nginx-conf-watcher start
