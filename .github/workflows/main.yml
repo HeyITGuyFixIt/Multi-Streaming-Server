@@ -71,10 +71,6 @@ jobs:
           exit 1
         fi
         if [ -e /usr/local/nginx/logs/error.log ]; then
-          echo An error log was generated
+          echo "::error file=/usr/local/nginx/logs/error.log::An error log was generated"
           exit 1
         fi
-    - name: Check for Nginx error log
-      uses: lots0logs/gh-action-conditional-failure@1.0.0
-      if: --file-exists -- /usr/local/nginx/logs/error.log
-        
