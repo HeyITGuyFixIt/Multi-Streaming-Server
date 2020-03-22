@@ -1,3 +1,4 @@
+#!/bin/bash
 ### BEGIN INIT INFO
 # Provides:          nginx
 # Required-Start:    $remote_fs $syslog
@@ -7,8 +8,6 @@
 # Short-Description: Service for Nginx server
 # Description:       Service to easily start and stop Nginx server.
 ### END INIT INFO
-
-#!/bin/bash
 
 USER=root
 
