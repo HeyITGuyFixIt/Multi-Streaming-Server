@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Stop Nginx if it's already running
 if [ -e /usr/local/nginx/logs/nginx.pid ]; then
