@@ -1,5 +1,5 @@
 <?php
-$username = $_POST["n"];
+$username = $_POST["name"];
 $password = $_POST["p"];
 
 $valid_users = array("sfc" => "8c1b69ba-75ad-4606-855f-65e9af6b0946", "portable" => "9b52b7c8-0d43-4589-b229-73a8a6a5e4af");
