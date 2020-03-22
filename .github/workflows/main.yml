@@ -32,7 +32,6 @@ jobs:
     - name: Build Multi-Streaming-Server
       run: |
         mv nginx/conf/nginx.template.conf nginx/conf/nginx.conf
-        sed -i -e 's/{{ stream_key }}/X-XX-XXX-XXXX-XXXXX-XXXXXX/g' nginx/conf/nginx.conf
         sed -i -e 's/{{ youtube_key }}/XXXX-XXXX-XXXX-XXXX/g' nginx/conf/nginx.conf
         sed -i -e 's/{{ facebook_key }}/XXXXXXXXXXXXXXX\?s_bl=1\&s_ps=1\&s_sw=0\&s_vt=api-s\&a=XXX-XXXXXXXXXXXX/g' nginx/conf/nginx.conf
         sed -i -e 's/{{ twitch_key }}/live_00000000_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/g' nginx/conf/nginx.conf
@@ -68,5 +67,7 @@ jobs:
         fi
         if [ -e /usr/local/nginx/logs/error.log ]; then
           cat /usr/local/nginx/logs/error.log
-          echo "::error file=/usr/local/nginx/logs/error.log::An error log was generated"
+          if grep -q 'error' /usr/local/nginx/logs/error.log; then
+            echo "::error file=/usr/local/nginx/logs/error.log::An error log was generated"
+          fi
         fi
