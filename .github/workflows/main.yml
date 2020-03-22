@@ -67,7 +67,7 @@ jobs:
         fi
         if [ -e /usr/local/nginx/logs/error.log ]; then
           cat /usr/local/nginx/logs/error.log
-          if grep -q 'error' /usr/local/nginx/logs/error.log; then
+          if grep -q 'emerg' /usr/local/nginx/logs/error.log; then
             echo "::error file=/usr/local/nginx/logs/error.log::An error log was generated"
           fi
         fi
