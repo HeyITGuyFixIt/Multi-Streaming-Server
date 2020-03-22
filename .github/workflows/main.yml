@@ -59,16 +59,14 @@ jobs:
       continue-on-error: false
       run: |
         if [ ! -e /usr/local/nginx/conf/nginx.conf ]; then
-          echo nginx.conf does not exist
-          exit 1
+          echo "::error file=/usr/local/nginx/conf/nginx.conf::nginx.conf does not exist"
         else
           cat nginx/conf/nginx.conf
         fi
         if [ ! -e /usr/local/nginx/conf/mime.types ]; then
-          echo mime.types does not exist
-          exit 1
+          echo "::error file=/usr/local/nginx/conf/mime.types::mime.types does not exist"
         fi
         if [ -e /usr/local/nginx/logs/error.log ]; then
+          cat /usr/local/nginx/logs/error.log
           echo "::error file=/usr/local/nginx/logs/error.log::An error log was generated"
-          exit 1
         fi
